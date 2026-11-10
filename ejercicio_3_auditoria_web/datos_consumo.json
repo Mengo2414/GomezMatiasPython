@@ -1,0 +1,6 @@
+[
+    {"planta": "Planta Norte", "consumo_kwh": 12500},
+    {"planta": "Planta Sur", "consumo_kwh": 9800},
+    {"planta": "Planta Norte", "consumo_kwh": 13100},
+    {"planta": "Planta Centro", "consumo_kwh": 15400}
+]

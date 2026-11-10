@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Panel de Sustentabilidad | EcoTech Solutions</title>
+    <style>
+        :root { color-scheme: light; font-family: Arial, sans-serif; }
+        body { margin: 0; background: #f1f5f2; color: #20332a; }
+        main { max-width: 900px; margin: 40px auto; padding: 28px; }
+        h1 { margin-bottom: 8px; color: #176b48; }
+        .subtitulo { color: #5b6b61; margin-top: 0; }
+        .resumen { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 24px 0; }
+        .tarjeta { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 3px 12px #183c2b14; }
+        .etiqueta { color: #5b6b61; font-size: 0.9rem; }
+        .valor { display: block; margin-top: 10px; font-size: 1.5rem; font-weight: 700; }
+        table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; }
+        th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid #e5ece7; }
+        th { background: #176b48; color: white; }
+        @media (max-width: 600px) { main { margin: 12px auto; padding: 16px; } }
+    </style>
+</head>
+<body>
+<main>
+    <h1>EcoTech Solutions</h1>
+    <p class="subtitulo">Panel de auditoría de consumo y huella de carbono</p>
+
+    <section class="resumen" aria-label="Indicadores principales">
+        <article class="tarjeta">
+            <span class="etiqueta">Emisiones globales</span>
+            <span class="valor">{{ metricas.emisiones_totales_kg_co2 }} kg CO₂</span>
+        </article>
+        <article class="tarjeta">
+            <span class="etiqueta">Planta de mayor consumo</span>
+            <span class="valor">{{ metricas.planta_mayor_consumo }}</span>
+        </article>
+        <article class="tarjeta">
+            <span class="etiqueta">Consumo máximo registrado</span>
+            <span class="valor">{{ metricas.consumo_maximo_kwh }} kWh</span>
+        </article>
+    </section>
+
+    <h2>Detalle por registro</h2>
+    <table>
+        <thead><tr><th>Planta</th><th>Consumo (kWh)</th><th>Emisiones (kg CO₂)</th></tr></thead>
+        <tbody>
+        {% for registro in metricas.detalle %}
+            <tr>
+                <td>{{ registro.planta }}</td>
+                <td>{{ registro.consumo_kwh|floatformat:2 }}</td>
+                <td>{{ registro.emisiones_kg_co2|floatformat:2 }}</td>
+            </tr>
+        {% empty %}
+            <tr><td colspan="3">No hay registros de consumo disponibles.</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</main>
+</body>
+</html>
