@@ -1,4 +1,5 @@
-import os\n"""Configuración mínima de Django para el panel de sustentabilidad."""
+import os
+"""Configuración mínima de Django para el panel de sustentabilidad."""
 
 SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 DEBUG = True
